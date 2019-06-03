@@ -1,3 +1,4 @@
+#-*- coding: utf-8 -*-
 import hashlib
 import json
 
@@ -15,6 +16,12 @@ class Block():
         block_string = json.dumps({'nonce': self.nonce, 'timestampt': self.timestampt, 'transactions': self.transactions, 'prev_hash': self.prev_hash}, sort_keys=True).encode('utf-8')
         return hashlib.sha256(block_string).hexdigest()
 
+    def mine_block(self, difficulty):
+        while self.hash[:difficulty] != ''.zfill(difficulty):
+            self.nonce += 1
+            self.hash = self.calc_hash()
+        print('Блок найден:', self.hash)
+
     def __str__(self):
         string = 'nonce: ' + str(self.nonce) + ', \n'
         string += 'timestampt: ' + str(self.timestampt) + ', \n'
@@ -29,6 +36,7 @@ class BlockChain():
 
     def __init__(self):
         self.chain = [self.generate_genesis_block(),]
+        self.difficulty = 6
 
     def generate_genesis_block(self):
         return Block(0, '01/06/2019', 'Genesis Block')
@@ -38,7 +46,7 @@ class BlockChain():
 
     def add_block(self, new_block):
         new_block.prev_hash = self.get_last_block().hash
-        new_block.hash = new_block.calc_hash()
+        new_block.mine_block(self.difficulty)
         self.chain.append(new_block)
 
     def validate_chain(self):
@@ -58,10 +66,12 @@ class BlockChain():
 
 if __name__ == "__main__":
     DARCoin = BlockChain()
+    print('Добавлен первый блок')
     DARCoin.add_block(Block(1, '20/05/2019', 100))
+
     DARCoin.add_block(Block(2, '25/05/2019', 50))
-    DARCoin.chain[2].transactions = 333
+    print('Добавлен второй блок')
+    DARCoin.chain[2].transactions = 777
     DARCoin.chain[2].hash = DARCoin.chain[2].calc_hash()
-    for b in DARCoin.chain:
-        print(b)
-    print(DARCoin.validate_chain())
+
+
