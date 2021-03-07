@@ -1,0 +1,2264 @@
+A record that includes all details of a transaction, including current status.
+
+Returned directly or within a successful result object from the following requests:
+Transaction: Sale
+Transaction: Void
+Transaction: Submit For Settlement
+Transaction: Submit For Partial Settlement
+Transaction: Refund
+Transaction: Clone Transaction
+Transaction: Find
+Transaction: Search
+Transaction: Hold In Escrow
+Transaction: Release From Escrow
+Transaction: Cancel Release
+Attributes
+acquirerReferenceNumber
+String
+A unique number that tags a credit or debit card transaction when it goes from the merchant’s bank through to the cardholder's bank. Also called a Trace ID, this number is often used to determine where a transaction's funds lie at a certain time. Learn more about Trace IDs here.
+
+addOns
+Array of AddOn objects
+The collection of add-ons associated with a subscription.
+
+additionalProcessorResponse
+String
+Optional additional processor response information, provided as further context for the primary processor response.
+
+amount
+String
+The billing amount of the request.
+
+androidPayCard
+If paymentInstrumentType is AndroidPayCard, these are the details of the card used for the transaction.
+
+NOTE
+Google Pay cards are represented as Android Pay cards in our API to prevent breaking changes.
+
+bin
+String
+The first 6 digits of the card number, also known as the Bank Identification Number (BIN). If this Google Pay card is network tokenized, its BIN may differ from the BIN of the underlying source card.
+
+commercial
+enum
+Whether the card type is a commercial card and is capable of processing Level 2 transactions. Possible values:
+
+CreditCard.Commercial.Yes
+CreditCard.Commercial.No
+CreditCard.Commercial.Unknown
+countryOfIssuance
+String
+The country that issued the credit card. Possible country values follow ISO 3166-1.
+
+The value Unknown will be returned if we cannot immediately determine the card's country of issuance from the bank identification number (BIN).
+
+debit
+enum
+Whether the card is a debit card. Possible values:
+
+CreditCard.Debit.Yes
+CreditCard.Debit.No
+CreditCard.Debit.Unknown
+durbinRegulated
+enum
+A value indicating whether the issuing bank's card range is regulated by the Durbin Amendment due to the bank's assets. Possible values:
+
+CreditCard.DurbinRegulated.Yes
+CreditCard.DurbinRegulated.No
+CreditCard.DurbinRegulated.Unknown
+expirationMonth
+String
+The expiration month of the credit card, formatted MM.
+
+expirationYear
+String
+The 2- or 4-digit year associated with the credit card, formatted YY or YYYY.
+
+googleTransactionId
+String
+A unique identifier provided by Google to track the payment method's transactions.
+
+healthcare
+enum
+Whether the card is a healthcare card. Possible values:
+
+CreditCard.HealthCare.Yes
+CreditCard.HealthCare.No
+CreditCard.HealthCare.Unknown
+imageUrl
+String
+A URL that points to a payment method image resource (a PNG file) hosted by Braintree.
+
+isNetworkTokenized
+bool
+Indicates whether this card has been network tokenized. A network tokenized card is a generated virtual card with a device-specific account number (DPAN) that is used in place of the underlying source card.
+
+payroll
+enum
+Whether the card is a payroll card. Possible values:
+
+CreditCard.Payroll.Yes
+CreditCard.Payroll.No
+CreditCard.Payroll.Unknown
+prepaid
+enum
+Whether the card is a prepaid card. Possible values:
+
+CreditCard.Prepaid.Yes
+CreditCard.Prepaid.No
+CreditCard.Prepaid.Unknown
+productId
+String
+The code for the product type of the card (e.g. D (Visa Signature Preferred), G (Visa Business)). See Product ID codes below for possible values.
+
+sourceCardLast4
+String
+The last 4 digits of the card number. If this card is network tokenized, this is the last 4 digits of the customer's actual card.
+
+sourceCardType
+String
+The card type. If this card is network tokenized, this is the card type of the customer's actual card.
+
+sourceDescription
+String
+Indicates what type of payment method was tokenized by the network. Also includes an identifier for the account (e.g. last 4 digits if the payment method was a credit card).
+
+token
+String
+An alphanumeric value that references a specific payment method stored in your Vault. Value will be nil if the transaction was not created from a vaulted Android Pay card.
+
+virtualCardLast4
+String
+The last 4 digits of the card number. If this card is network tokenized, this is the last 4 digits of the device-specific account number (DPAN).
+
+virtualCardType
+String
+The card type. If this card is network tokenized, this is the card type of the network tokenized card.
+
+applePayCard
+If paymentInstrumentType is ApplePayCard, these are the details of the credit card used for the transaction.
+
+bin
+String
+The first 6 digits of the device-specific account number (DPAN), known as the Bank Identification Number. This BIN may differ from the BIN of the underlying card.
+
+cardType
+String
+The type of the credit card. Possible values:
+
+Apple Pay - Visa
+Apple Pay - MasterCard
+Apple Pay - American Express
+Apple Pay - Discover
+cardholderName
+String
+The cardholder name associated with the credit card.
+
+commercial
+enum
+Whether the card type is a commercial card and is capable of processing Level 2 transactions. Possible values:
+
+CreditCard.Commercial.Yes
+CreditCard.Commercial.No
+CreditCard.Commercial.Unknown
+countryOfIssuance
+String
+The country that issued the credit card. Possible country values follow ISO 3166-1.
+
+The value Unknown will be returned if we cannot immediately determine the card's country of issuance from the bank identification number (BIN).
+
+debit
+enum
+Whether the card is a debit card. Possible values:
+
+CreditCard.Debit.Yes
+CreditCard.Debit.No
+CreditCard.Debit.Unknown
+durbinRegulated
+enum
+A value indicating whether the issuing bank's card range is regulated by the Durbin Amendment due to the bank's assets. Possible values:
+
+CreditCard.DurbinRegulated.Yes
+CreditCard.DurbinRegulated.No
+CreditCard.DurbinRegulated.Unknown
+expirationMonth
+String
+The expiration month of the credit card, formatted MM.
+
+expirationYear
+String
+The 4-digit expiration year of the credit card, formatted YYYY.
+
+healthcare
+enum
+Whether the card is a healthcare card. Possible values:
+
+CreditCard.HealthCare.Yes
+CreditCard.HealthCare.No
+CreditCard.HealthCare.Unknown
+imageUrl
+String
+A URL that points to a payment method image resource (a PNG file) hosted by Braintree.
+
+issuingBank
+String
+The bank that issued the credit card.
+
+last4
+String
+The last 4 digits of the device-specific account number (DPAN).
+
+paymentInstrumentName
+String
+A description of the payment method intended for display to the user, typically card type and last 4 digits of the physical card number stored by Wallet (formerly Passbook). We receive this description alongside the DPAN when processing an Apple Pay transaction.
+
+payroll
+enum
+Whether the card is a payroll card. Possible values:
+
+CreditCard.Payroll.Yes
+CreditCard.Payroll.No
+CreditCard.Payroll.Unknown
+prepaid
+enum
+Whether the card is a prepaid card. Possible values:
+
+CreditCard.Prepaid.Yes
+CreditCard.Prepaid.No
+CreditCard.Prepaid.Unknown
+productId
+String
+The code for the product type of the card (e.g. D (Visa Signature Preferred), G (Visa Business)). See Product ID codes below for possible values.
+
+sourceDescription
+String
+Indicates what type of payment method was tokenized by the network. Also includes an identifier for the account (e.g. last 4 digits if the payment method was a credit card).
+
+token
+String
+An alphanumeric value that references a specific payment method stored in your Vault. Value will be nil if the transaction was not created from a vaulted Apple Pay card.
+
+authorizationAdjustments
+A collection of authorization adjustments associated with the transaction.
+
+authorizationExpiresAt
+Date
+The date/time the transaction will expire if it has the authorized status. For more details on authorization expiration timeframes, see the Statuses reference. Returned in UTC.
+
+avsErrorResponseCode
+This field is populated if there was an error when checking AVS or the processing bank does not support AVS. Possible values:
+
+S = Issuing bank does not support AVS
+E = AVS system error
+
+If this value is null, you will see responses in both avsPostalCodeResponseCode and avsStreetAddressResponseCode.
+
+avsPostalCodeResponseCode
+This is populated if the processor supports the address verification system (AVS). Possible values:
+
+M = Matches
+N = Does not match
+U = Not verified
+I = Not provided
+A = Not applicable
+B = Bypass
+avsStreetAddressResponseCode
+This is populated if the processor supports the address verification system (AVS). Possible values:
+
+M = Matches
+N = Does not match
+U = Not verified
+I = Not provided
+A = Not applicable
+B = Bypass
+billing
+The billing address details used to process this transaction. If billing address was stored in the Vault, then the billing address details are a snapshot of the address in the Vault at the time the transaction was created.
+
+company
+String
+The billing company name. See the transaction API requests section for details.
+
+countryCodeAlpha2
+String
+The 2-letter billing country code. See the transaction API requests section for details.
+
+countryCodeAlpha3
+String
+The 3-letter billing country code. See the transaction API requests section for details.
+
+countryCodeNumeric
+String
+The numeric billing country code. See the transaction API requests section for details.
+
+countryName
+String
+The billing country name. See the transaction API requests section for details.
+
+extendedAddress
+String
+The extended billing address. See the transaction API requests section for details.
+
+firstName
+String
+The first name. See the transaction API requests section for details.
+
+id
+String
+The billing details ID. A customer Vault record can contain up to 50 shipping and billing addresses, each with a unique ID. See the transaction API requests section for details.
+
+lastName
+String
+The last name. See the transaction API requests section for details.
+
+locality
+String
+The locality/city. See the transaction API requests section for details.
+
+postalCode
+String
+The postal code. See the transaction API requests section for details.
+
+region
+String
+The state or province. See the transaction API requests section for details.
+
+streetAddress
+String
+The street address. See the transaction API requests section for details.
+
+channel
+String
+If the transaction request was performed through a shopping cart provider or Braintree partner, this field will have a string identifier for that shopping cart provider or partner. For PayPal transactions, this maps to the PayPal account's bn_code.
+
+createdAt
+Date
+The date/time the object was created. Returned in UTC.
+
+creditCard
+If paymentInstrumentType is CreditCard, these are the details of the card used for the transaction. If the transaction was created using Vault tokens, then this attribute is a snapshot of the credit card in the Vault at the time the transaction was created.
+
+bin
+The first 6 digits of the credit card, known as the bank identification number (BIN).
+
+cardType
+The type of the credit card. Possible values:
+
+American Express
+Carte Blanche
+China UnionPay
+Discover
+Elo
+JCB
+Laser
+Maestro
+MasterCard
+Solo
+Switch
+UK Maestro
+Visa
+Unknown
+cardholderName
+String
+The cardholder name associated with the credit card.
+
+commercial
+enum
+Whether the card type is a commercial card and is capable of processing Level 2 transactions. Possible values:
+
+CreditCard.Commercial.Yes
+CreditCard.Commercial.No
+CreditCard.Commercial.Unknown
+countryOfIssuance
+String
+The country that issued the credit card. Possible country values follow ISO 3166-1.
+
+The value Unknown will be returned if we cannot immediately determine the card's country of issuance from the bank identification number (BIN).
+
+customerLocation
+enum
+This is "US" if the billing address is in the US or if a country is not specified. The location is "International" if the billing country passed is not the US. Possible values:
+
+CreditCardCustomerLocation.International
+CreditCardCustomerLocation.US
+debit
+enum
+Whether the card is a debit card. Possible values:
+
+CreditCard.Debit.Yes
+CreditCard.Debit.No
+CreditCard.Debit.Unknown
+durbinRegulated
+enum
+A value indicating whether the issuing bank's card range is regulated by the Durbin Amendment due to the bank's assets. Possible values:
+
+CreditCard.DurbinRegulated.Yes
+CreditCard.DurbinRegulated.No
+CreditCard.DurbinRegulated.Unknown
+expirationDate
+String
+The expiration date, formatted MM/YY or MM/YYYY. May be used instead of expiration month and expiration year.
+
+expirationMonth
+String
+The expiration month of the credit card used, formatted MM.
+
+expirationYear
+String
+The expiration year of the credit card used, formatted YYYY.
+
+healthcare
+enum
+Whether the card is a healthcare card. Possible values:
+
+CreditCard.HealthCare.Yes
+CreditCard.HealthCare.No
+CreditCard.HealthCare.Unknown
+imageUrl
+A URL that points to an image resource (a PNG file) hosted by Braintree, which represents the issuing card network (Visa, Mastercard, American Express, Discover, JCB).
+
+issuingBank
+String
+The bank that issued the credit card.
+
+last4
+The last 4 digits of the credit card number.
+
+maskedNumber
+A value comprising the bank identification number (BIN), 6 asterisks blocking out the middle numbers (regardless of the number of digits present), and the last 4 digits of the card number. This complies with PCI security standards.
+
+payroll
+enum
+Whether the card is a payroll card. Possible values:
+
+CreditCard.Payroll.Yes
+CreditCard.Payroll.No
+CreditCard.Payroll.Unknown
+prepaid
+enum
+Whether the card is a prepaid card. Possible values:
+
+CreditCard.Prepaid.Yes
+CreditCard.Prepaid.No
+CreditCard.Prepaid.Unknown
+productId
+String
+The code for the product type of the card (e.g. D (Visa Signature Preferred), G (Visa Business)). See Product ID codes below for possible values.
+
+token
+String
+The Vault token for the credit card. Unlike other attributes in this details map, this attribute is not a snapshot – if you update the payment method token after creating a transaction, the creditCard.token attribute will return the new value rather than the value associated with the transaction at the time it was created. See the transaction API requests section for additional details.
+
+uniqueNumberIdentifier
+A randomly-generated string that uniquely identifies a credit card number in the Vault. If the same credit card is added to a merchant's Vault multiple times, each Vault entry will have the same unique identifier. This value is randomly generated by merchant gateway account, so it will be different for each merchant's Vault.
+
+currencyIsoCode
+The currency for the transaction (e.g. "USD" for US dollars). See the ISO 4217 codes.
+
+customFields
+A collection of custom field/value pairs.
+
+customer
+The customer details used to process this transaction. If the transaction was created using Vault tokens, then the customer details are a snapshot of the customer in the Vault at the time the transaction was created.
+
+company
+String
+The customer company name. See the transaction API requests section for details.
+
+email
+String
+The email address. See the transaction API requests section for details.
+
+fax
+String
+The customer fax number. See the transaction API requests section for details.
+
+firstName
+String
+The first name. See the transaction API requests section for details.
+
+id
+String
+Reference value that is associated with the customer's id at the time of the transaction.
+
+lastName
+String
+The last name. See the transaction API requests section for details.
+
+phone
+String
+The customer phone number. See the transaction API requests section for details.
+
+website
+String
+The customer website address. See the transaction API requests section for details.
+
+cvvResponseCode
+The processing bank's response to the card verification value (CVV) provided by the customer. Possible values:
+
+M = Matches
+N = Does not match
+U = Not verified
+I = Not provided
+S = Issuer does not participate
+A = Not applicable
+B = Bypass
+descriptor
+name
+String
+The value in the business name field of a customer's statement.
+
+phone
+String
+The value in the phone number field of a customer's statement.
+
+url
+String
+The value in the URL/web address field of a customer's statement.
+
+disbursementDetails
+Disbursement details contain information about how and when the transaction was disbursed, including timing and currency information. This detail is only available if you have an eligible merchant account.
+
+disbursementDate
+The date that the funds associated with this transaction were disbursed. This attribute is only available if you have an eligible merchant account.
+
+fundsHeld
+bool
+A value indicating whether funds have been withheld from a disbursement to the merchant's bank account.
+
+settlementAmount
+String
+The amount of the transaction in the settlement currency. This attribute is only available if you have an eligible merchant account.
+
+settlementCurrencyExchangeRate
+The exchange rate from the presentment currency to the settlement currency. This attribute is only available if you have an eligible merchant account.
+
+settlementCurrencyIsoCode
+The settlement currency. See the ISO 4217 codes. This attribute is only available if you have an eligible merchant account.
+
+success
+A value indicating whether the funds were disbursed successfully. This value can change over time if we receive an exception and then retry the disbursement. This attribute is only available on eligible merchant accounts.
+
+Some of the most common reasons that funds are held from disbursement are risk reviews of the merchant's recent processing or as a result of ACH returns or rejects. If funds are held (for any reason) you will be notified with the proper steps to take.
+
+discountAmount
+String
+The data field that specifies the discount amount that was included in the total transaction amount. It can't be negative, and it does not add to the total transaction amount. If Braintree has approved your merchant account for Level 3 processing, we will pass this field to the processor on your behalf. This Braintree line-item field is not used by PayPal.
+
+discounts
+Array of Discount objects
+A collection of discounts associated with this subscription.
+
+disputes
+Array of Dispute objects
+A collection of disputes associated with the transaction.
+
+escrowStatus
+This attribute is only available to Braintree Marketplace merchants. See Holding funds in escrow to learn more. Possible values:
+
+"hold_pending"
+"held"
+"release_pending"
+"released"
+"refunded"
+facilitatedDetails
+If the transaction request was performed using payment information from a third party via the Grant API or Shared Vault, these fields will capture information about the merchant of record. These fields are primarily useful for the third party.
+
+merchantId
+String
+The merchant ID of the merchant of record.
+
+merchantName
+String
+The name of the business associated with the merchant of record.
+
+paymentMethodNonce
+String
+The granted paymentMethodNonce used to create the transaction. Only populated if the transaction was created with a nonce granted via the Grant API.
+
+facilitatorDetails
+If the transaction request was performed using payment information from a third party via the Grant API, Shared Vault or Google Pay, these fields will capture information about the third party. These fields are primarily useful for the merchant of record.
+
+oauthApplicationClientId
+String
+The unique identifier for the OAuth application that owns the payment information used to create the transaction.
+
+oauthApplicationName
+String
+The display name of the OAuth application that owns the payment information used to create the transaction.
+
+sourcePaymentMethodToken
+String
+The alphanumeric value that references a specific payment method stored in the facilitator's Vault.
+
+gatewayRejectionReason
+This value will only be set if the transaction status is gateway_rejected. Possible values:
+
+"application_incomplete"
+"avs"
+"avs_and_cvv"
+"cvv"
+"duplicate"
+"fraud"
+"risk_threshold"
+"three_d_secure"
+"token_issuance"
+graphQLId
+String
+The unique identifier used to identify this transaction in Braintree's GraphQL API.
+
+id
+String
+The unique transaction identifier. Length and format of gateway-generated tokens and IDs may change at any time.
+
+lineItems
+A collection of line items associated with the transaction.
+
+masterpassCardDetails
+If paymentInstrumentType is MasterpassCard, these are the details of the card used for the transaction. If the transaction was created using Vault tokens, then this attribute is a snapshot of the Masterpass card in the Vault at the time the transaction was created.
+
+bin
+The first 6 digits of the credit card, known as the bank identification number (BIN).
+
+cardType
+The type of the credit card. Possible values:
+
+American Express
+Discover
+JCB
+Maestro
+MasterCard
+Visa
+cardholderName
+String
+The cardholder name associated with the credit card.
+
+commercial
+enum
+Whether the card type is a commercial card and is capable of processing Level 2 transactions. Possible values:
+
+CreditCard.Commercial.Yes
+CreditCard.Commercial.No
+CreditCard.Commercial.Unknown
+countryOfIssuance
+String
+The country that issued the credit card. Possible country values follow ISO 3166-1.
+
+The value Unknown will be returned if we cannot immediately determine the card's country of issuance from the bank identification number (BIN).
+
+customerLocation
+enum
+This is "US" if the billing address is in the US or if a country is not specified. The location is "International" if the billing country passed is not the US. Possible values:
+
+CreditCardCustomerLocation.International
+CreditCardCustomerLocation.US
+debit
+enum
+Whether the card is a debit card. Possible values:
+
+CreditCard.Debit.Yes
+CreditCard.Debit.No
+CreditCard.Debit.Unknown
+durbinRegulated
+enum
+A value indicating whether the issuing bank's card range is regulated by the Durbin Amendment due to the bank's assets. Possible values:
+
+CreditCard.DurbinRegulated.Yes
+CreditCard.DurbinRegulated.No
+CreditCard.DurbinRegulated.Unknown
+expirationDate
+String
+The expiration date, formatted MM/YY or MM/YYYY. May be used instead of expiration month and expiration year.
+
+expirationMonth
+String
+The expiration month of the credit card used, formatted MM.
+
+expirationYear
+String
+The expiration year of the credit card used, formatted YYYY.
+
+healthcare
+enum
+Whether the card is a healthcare card. Possible values:
+
+CreditCard.HealthCare.Yes
+CreditCard.HealthCare.No
+CreditCard.HealthCare.Unknown
+imageUrl
+A URL that points to an image resource (a PNG file) hosted by Braintree, which represents the issuing card network (Visa, Mastercard, American Express, Discover).
+
+issuingBank
+String
+The bank that issued the credit card.
+
+last4
+The last 4 digits of the credit card number.
+
+maskedNumber
+A value comprising the bank identification number (BIN), 6 asterisks blocking out the middle numbers (regardless of the number of digits present), and the last 4 digits of the card number. This complies with PCI security standards.
+
+payroll
+enum
+Whether the card is a payroll card. Possible values:
+
+CreditCard.Payroll.Yes
+CreditCard.Payroll.No
+CreditCard.Payroll.Unknown
+prepaid
+enum
+Whether the card is a prepaid card. Possible values:
+
+CreditCard.Prepaid.Yes
+CreditCard.Prepaid.No
+CreditCard.Prepaid.Unknown
+productId
+String
+The code for the product type of the card (e.g. D (Visa Signature Preferred), G (Visa Business)). See Product ID codes below for possible values.
+
+token
+String
+The Vault token for the Masterpass card. Unlike other attributes in this details map, this attribute is not a snapshot – if you update the payment method token after creating a transaction, the masterpassCardDetails.token attribute will return the new value rather than the value associated with the transaction at the time it was created. See the transaction API requests section for additional details.
+
+merchantAccountId
+String
+The merchant account ID used to create a transaction. Currency is also determined by merchant account ID.
+
+networkResponseCode
+String
+The network response code. When present, this field can provide additional detail about why a transaction was declined, but the processorResponseCode should be considered the source of truth. See the list of possible network responses.
+
+networkResponseText
+String
+The network response text for the networkResponseCode.
+
+networkTransactionId
+String
+The network transaction identifier provided by the payment network. This should be provided in requests to create subsequent transactions if the card used in this transaction is being stored in an external vault. This identifier can be passed in the externalVault.previousNetworkTransactionId field of subsequent transactions.
+
+orderId
+String
+The order ID of the transaction. On PayPal transactions, this field maps to the PayPal invoice number. PayPal invoice numbers are unique in your PayPal business account.
+
+paymentInstrumentType
+The method of payment used to process the transaction. Possible values:
+
+AndroidPayCard
+ApplePayCard
+CreditCard
+MasterpassCard
+PaypalAccount
+PaypalHere
+SamsungPayCard
+UsBankAccount
+VenmoAccount
+VisaCheckoutCard
+paypalAccount
+If paymentInstrumentType is PaypalAccount, these are the details of the PayPal account used for the transaction.
+
+authorizationId
+String
+The identification value of the authorization within PayPal's API.
+
+captureId
+String
+PayPal id for a transaction.
+
+customField
+String
+Custom field/value pairs.
+
+imageUrl
+String
+A URL that points to a PayPal image resource (a PNG file) hosted by Braintree.
+
+implicitlyVaultedPaymentMethodGlobalId
+String
+The payment method global id that is returned from a one-time PayPal transaction with billing agreement creation.
+
+implicitlyVaultedPaymentMethodToken
+String
+The payment method token that is returned from a one-time PayPal transaction with billing agreement creation.
+
+payerEmail
+String
+The email address associated with the PayPal account that was used to create the request. This field will not be populated if the PayPal transaction declines and the payment method was not previously stored in the Vault.
+
+payerFirstName
+String
+The first name associated with the PayPal account used to create the request.
+
+payerId
+String
+The identifier for the PayPal account used in the request.
+
+payerLastName
+String
+The last name associated with the PayPal account used to create the request.
+
+payerPhone
+String
+The primary phone number of the PayPal account used to create the request.
+
+payerStatus
+String
+The status of the PayPal account used to create the request.
+
+paymentId
+String
+The identification value of the payment within PayPal's API.
+
+refundFromTransactionFeeAmount
+String
+The refund from the transaction fee amount of the PayPal transaction.
+
+A refund from transaction fee of 1 will always be returned for sandbox integrations.
+
+refundFromTransactionFeeCurrencyIsoCode
+String
+The currency of the associated refund from the transaction fee.
+
+refundId
+String
+PayPal id for a refund.
+
+selectedFinancingCurrencyCode
+String
+The currency code for the selected financing option.
+
+selectedFinancingDiscountAmount
+String
+Optional discount amount for the selected financing option.
+
+selectedFinancingDiscountPercentage
+String
+Optional discount percentage on interest rates for the selected financing option.
+
+selectedFinancingMonthlyPaymentAmount
+String
+The monthly amount to be paid for the selected financing option.
+
+selectedFinancingTerm
+integer
+The agreed term in months for the selected financing option.
+
+sellerProtectionStatus
+String
+Indicates whether a transaction qualifies for PayPal Seller Protection.
+
+shippingOptionId
+String
+The identification value of the shipping option selected during PayPal Checkout.
+
+taxId
+String
+Payer's tax id. Only returned for payments from Brazilian accounts.
+
+taxIdType
+String
+Payer's tax id type. Only returned for payments from Brazilian accounts. Allowed values BR_CPF or BR_CNPJ.
+
+token
+String
+An alphanumeric value that references a specific payment method stored in your Vault. Length and format of gateway-generated tokens and IDs may change at any time.
+
+transactionFeeAmount
+String
+The transaction fee amount of the PayPal transaction.
+
+A transaction fee of 1 will always be returned for sandbox integrations.
+
+transactionFeeCurrencyIsoCode
+String
+The currency of the associated transaction fee.
+
+paypalHereDetails
+If paymentInstrumentType is PaypalHere, these are the details of the PayPal Here payment method used for the transaction. See the PayPal Here guide for details.
+
+authorizationId
+String
+The identification value of the authorization within PayPal's API.
+
+captureId
+String
+PayPal ID for a transaction.
+
+invoiceId
+String
+PayPal ID for the invoice for the transaction.
+
+last4
+String
+The last 4 digits of the credit card number.
+
+paymentId
+String
+The identification value of the payment within PayPal's API.
+
+paymentType
+String
+The type of the credit card. Possible values:
+
+A - American Express
+D - Discover
+J - JCB
+T - Maestro
+M - MasterCard
+V - Visa
+refundId
+String
+PayPal ID for a refund.
+
+transactionFeeAmount
+The amount of the transaction fee assessed for the PayPal Here transaction.
+
+transactionFeeCurrencyIsoCode
+String
+The currency of the associated transaction fee.
+
+transactionInitiationDate
+Date
+The date/time the transaction was initiated in PayPal systems. Returned in UTC.
+
+transactionUpdatedDate
+Date
+The date/time the transaction was last updated in PayPal systems. Returned in UTC.
+
+planId
+String
+The plan identifier.
+
+processorAuthorizationCode
+The authorization code returned by the processor.
+
+processorResponseCode
+String
+The processor response code. See the list of possible processor authorization responses.
+
+processorResponseText
+String
+The processor response text. See the list of possible processor authorization responses.
+
+processorResponseType
+String
+The processor response type. Possible values:
+
+"approved"
+"soft_declined"
+"hard_declined"
+See the list of possible processor authorization responses, and definitions of soft and hard declines.
+
+processorSettlementResponseCode
+String
+The status of the request to capture the funds. See the list of possible processor settlement responses.
+
+processorSettlementResponseText
+String
+The text explanation of the above processor settlement response code.
+
+purchaseOrderNumber
+String
+A Level 2 data field that can be used to store a purchase order identification value.
+
+recurring
+A value indicating whether the transaction was passed with a recurring ecommerce indicator (ECI) flag.
+
+refundIds
+The transaction refund ID(s) associated with a sale transaction. See the transaction API requests section for details.
+
+refundedTransactionId
+String
+The sale transaction ID associated with a refund transaction. See the transaction API requests section for details.
+
+retrievalReferenceNumber
+String
+The string value representing the reference number provided by the processor (if any).
+
+riskData
+Any applicable risk data associated with the transaction. The data includes the risk identifier, the device data captured flag, and the risk decision, which can provide further context on how a transaction was scored by Braintree.
+
+decision
+String
+The risk decision. Possible values:
+
+Not Evaluated
+Approve
+Review
+Decline
+deviceDataCaptured
+bool
+Flag indicating whether device session data was successfully captured and processed by the fraud service. Currently available in the .NET, Node, and PHP client libraries.
+
+fraudServiceProvider
+String
+The fraud service used to determine if a transaction is likely to be fraudulent.
+
+id
+String
+The risk data identifier.
+
+samsungPayCardDetails
+If paymentInstrumentType is SamsungPayCard, these are the details of the card used for the transaction. If the transaction was created using Vault tokens, then this attribute is a snapshot of the Samsung Pay card in the Vault at the time the transaction was created.
+
+bin
+The first 6 digits of the credit card, known as the bank identification number (BIN).
+
+cardType
+The type of the credit card. Possible values:
+
+American Express
+MasterCard
+Visa
+cardholderName
+String
+The cardholder name associated with the credit card.
+
+commercial
+enum
+Whether the card type is a commercial card and is capable of processing Level 2 transactions. Possible values:
+
+CreditCard.Commercial.Yes
+CreditCard.Commercial.No
+CreditCard.Commercial.Unknown
+countryOfIssuance
+String
+The country that issued the credit card. Possible country values follow ISO 3166-1.
+
+The value Unknown will be returned if we cannot immediately determine the card's country of issuance from the bank identification number (BIN).
+
+customerLocation
+enum
+This is "US" if the billing address is in the US or if a country is not specified. The location is "International" if the billing country passed is not the US. Possible values:
+
+CreditCardCustomerLocation.International
+CreditCardCustomerLocation.US
+debit
+enum
+Whether the card is a debit card. Possible values:
+
+CreditCard.Debit.Yes
+CreditCard.Debit.No
+CreditCard.Debit.Unknown
+durbinRegulated
+enum
+A value indicating whether the issuing bank's card range is regulated by the Durbin Amendment due to the bank's assets. Possible values:
+
+CreditCard.DurbinRegulated.Yes
+CreditCard.DurbinRegulated.No
+CreditCard.DurbinRegulated.Unknown
+expirationDate
+String
+The expiration date, formatted MM/YY or MM/YYYY. May be used instead of expiration month and expiration year.
+
+expirationMonth
+String
+The expiration month of the credit card used, formatted MM.
+
+expirationYear
+String
+The expiration year of the credit card used, formatted YYYY.
+
+healthcare
+enum
+Whether the card is a healthcare card. Possible values:
+
+CreditCard.HealthCare.Yes
+CreditCard.HealthCare.No
+CreditCard.HealthCare.Unknown
+imageUrl
+A URL that points to an image resource (a PNG file) hosted by Braintree, which represents the issuing card network (Visa, Mastercard, American Express, Discover).
+
+issuingBank
+String
+The bank that issued the credit card.
+
+last4
+The last 4 digits of the credit card number.
+
+maskedNumber
+A value comprising the bank identification number (BIN), 6 asterisks blocking out the middle numbers (regardless of the number of digits present), and the last 4 digits of the card number. This complies with PCI security standards.
+
+payroll
+enum
+Whether the card is a payroll card. Possible values:
+
+CreditCard.Payroll.Yes
+CreditCard.Payroll.No
+CreditCard.Payroll.Unknown
+prepaid
+enum
+Whether the card is a prepaid card. Possible values:
+
+CreditCard.Prepaid.Yes
+CreditCard.Prepaid.No
+CreditCard.Prepaid.Unknown
+productId
+String
+The code for the product type of the card (e.g. D (Visa Signature Preferred), G (Visa Business)). See Product ID codes below for possible values.
+
+sourceCardLast4
+String
+The last 4 digits of the payment method tokenized by the network.
+
+token
+String
+The Vault token for the Samsung Pay card. Unlike other attributes in this details map, this attribute is not a snapshot – if you update the payment method token after creating a transaction, the samsungPayCardDetails.token attribute will return the new value rather than the value associated with the transaction at the time it was created. See the transaction API requests section for additional details.
+
+scaExemptionRequested
+String
+If an exemption to the Secure Customer Authentication requirement was requested for this transaction, this value will have the specific reason for the exemption request.
+
+serviceFeeAmount
+String
+The portion of a sub-merchant's transaction revenue that was routed to the master merchant account.
+
+Available to Braintree Marketplace merchants. See Creating Transactions with Service Fees for more details.
+
+settlementBatchId
+String
+The identification value of the settlement batch in which the transaction was processed. The format may change at any time but is currently YYYY-MM-DD_m_d where m is the merchant account token without special characters and d is an alphanumeric string to guarantee uniqueness.
+
+shippingAmount
+String
+The data field that specifies the shipping cost on the entire transaction. It can't be negative, and it does not add to the total transaction amount. If Braintree has approved your merchant account for Level 3 processing, we will pass this field to the processor on your behalf.
+
+shipping
+The shipping address details used to process this transaction. If shipping address was stored in the Vault, then the shipping address details are a snapshot of the address in the Vault at the time the transaction was created.
+
+company
+String
+The shipping company name. See the transaction API requests section for details.
+
+countryCodeAlpha2
+String
+The 2-letter shipping country code. See the transaction API requests section for details.
+
+countryCodeAlpha3
+String
+The 3-letter shipping country code. See the transaction API requests section for details.
+
+countryCodeNumeric
+String
+The numeric shipping country code. See the transaction API requests section for details.
+
+countryName
+String
+The shipping country name. See the transaction API requests section for details.
+
+extendedAddress
+String
+The extended shipping address. See the transaction API requests section for details.
+
+firstName
+String
+The first name. See the transaction API requests section for details.
+
+id
+String
+The shipping details ID. A customer Vault record can contain up to 50 shipping and billing addresses, each with a unique ID. See the transaction API requests section for details.
+
+lastName
+String
+The last name. See the transaction API requests section for details.
+
+locality
+String
+The locality/city. See the transaction API requests section for details.
+
+postalCode
+String
+The postal code. See the transaction API requests section for details.
+
+region
+String
+The state or province. See the transaction API requests section for details.
+
+streetAddress
+String
+The street address. See the transaction API requests section for details.
+
+shipsFromPostalCode
+String
+The data field that specifies the postal code of the shipping location. If Braintree has approved your merchant account for Level 3 processing, we will pass this field to the processor on your behalf.
+
+status
+String
+Possible values:
+
+AuthorizationExpired
+Authorized
+Authorizing
+SettlementPending
+SettlementDeclined
+Failed
+GatewayRejected
+ProcessorDeclined
+Settled
+Settling
+SubmittedForSettlement
+Voided
+See the transaction status explanations for details.
+
+statusHistory
+A collection of status history details showing the transaction's status changes over time.
+
+subscription
+billingPeriodEndDate
+The end date for the current billing period, regardless of subscription status. Automatic retries on past due subscriptions do not change the start and end dates of the current billing period.
+
+billingPeriodStartDate
+The start date for the current billing period, regardless of subscription status. Automatic retries on past due subscriptions do not change the start and end dates of the current billing period.
+
+subscriptionId
+String
+The value used to identify a specific subscription.
+
+taxAmount
+String
+A Level 2 data field that specifies the amount of tax that was included in the total transaction amount. It is never negative, and it does not add to the total transaction amount.
+
+taxExempt
+bool
+A Level 2 data field that indicates whether or not the transaction should be considered eligible for tax exemption. This does not affect the total transaction amount.
+
+threeDSecureInfo
+The 3D Secure information for this transaction.
+
+cavv
+String
+Cardholder Authentication Verification Value or "CAVV". The main encrypted message issuers and card networks use to verify authentication has occured. Mastercard refers to this field as AAV, while American Express refers to this field as AEVV.
+
+dsTransactionId
+String
+Transaction identifier resulting from 3D Secure 2 authentication.
+
+eciFlag
+String
+The value of the electronic commerce indicator (ECI) flag, which indicates the outcome of the 3DS authentication.
+
+Possible values for Mastercard:
+
+00 = Failed or not attempted
+01 = Attempted
+02 = Success
+Possible values for all other card brands:
+
+07 = Failed or not attempted
+06 = Attempted
+05 = Success
+enrolled
+String
+Indicates whether a card is enrolled in a 3D Secure program or not. Possible values:
+
+Y = Yes
+N = No
+U = Unavailable
+B = Bypass
+E = RequestFailure
+liabilityShiftPossible
+bool
+Indicates whether a liability shift is possible.
+
+liabilityShifted
+bool
+Indicates whether the liability shifted or not.
+
+status
+String
+The 3D Secure status value. For a list of all possible statuses and their liability shifts, see the 3D Secure guide.
+
+threeDSecureVersion
+String
+The version of 3D Secure authentication used for the transaction. Composed of digits separated by periods (e.g. 1.0.2, 2.1.0).
+
+xid
+String
+Transaction identifier resulting from 3D Secure authentication. This field will no longer be used in 3D Secure 2 authentications.
+
+type
+String
+The value that defines whether a transaction is a sale or credit.
+
+updatedAt
+Date
+The date/time the object was last updated. Returned in UTC.
+
+venmoAccount
+If paymentInstrumentType is VenmoAccount, these are the details of the Venmo account used for the transaction.
+
+Venmo payments are currently in a limited release and are only available to select merchants. See the Venmo guide for details.
+
+imageUrl
+String
+A URL that points to a payment method image resource (a PNG file) hosted by Braintree.
+
+sourceDescription
+String
+A short description of the payment method, including the Venmo username.
+
+token
+String
+An alphanumeric value that references a specific payment method stored in your Vault. Value will be nil if the transaction was not created from a vaulted Venmo account.
+
+username
+String
+The Venmo username of the Venmo account.
+
+venmoUserId
+String
+The Venmo user ID of the Venmo account.
+
+visaCheckoutCardDetails
+If paymentInstrumentType is VisaCheckoutCard, these are the details of the card used for the transaction. If the transaction was created using Vault tokens, then this attribute is a snapshot of the Visa Checkout card in the Vault at the time the transaction was created.
+
+bin
+The first 6 digits of the credit card, known as the bank identification number (BIN).
+
+callId
+String
+The Visa assigned identifier of the transaction.
+
+cardType
+The type of the credit card. Possible values:
+
+American Express
+Discover
+MasterCard
+Visa
+cardholderName
+String
+The cardholder name associated with the credit card.
+
+commercial
+enum
+Whether the card type is a commercial card and is capable of processing Level 2 transactions. Possible values:
+
+CreditCard.Commercial.Yes
+CreditCard.Commercial.No
+CreditCard.Commercial.Unknown
+countryOfIssuance
+String
+The country that issued the credit card. Possible country values follow ISO 3166-1.
+
+The value Unknown will be returned if we cannot immediately determine the card's country of issuance from the bank identification number (BIN).
+
+customerLocation
+enum
+This is "US" if the billing address is in the US or if a country is not specified. The location is "International" if the billing country passed is not the US. Possible values:
+
+CreditCardCustomerLocation.International
+CreditCardCustomerLocation.US
+debit
+enum
+Whether the card is a debit card. Possible values:
+
+CreditCard.Debit.Yes
+CreditCard.Debit.No
+CreditCard.Debit.Unknown
+durbinRegulated
+enum
+A value indicating whether the issuing bank's card range is regulated by the Durbin Amendment due to the bank's assets. Possible values:
+
+CreditCard.DurbinRegulated.Yes
+CreditCard.DurbinRegulated.No
+CreditCard.DurbinRegulated.Unknown
+expirationDate
+String
+The expiration date, formatted MM/YY or MM/YYYY. May be used instead of expiration month and expiration year.
+
+expirationMonth
+String
+The expiration month of the credit card used, formatted MM.
+
+expirationYear
+String
+The expiration year of the credit card used, formatted YYYY.
+
+healthcare
+enum
+Whether the card is a healthcare card. Possible values:
+
+CreditCard.HealthCare.Yes
+CreditCard.HealthCare.No
+CreditCard.HealthCare.Unknown
+imageUrl
+A URL that points to an image resource (a PNG file) hosted by Braintree, which represents the issuing card network (Visa, Mastercard, American Express, Discover).
+
+issuingBank
+String
+The bank that issued the credit card.
+
+last4
+The last 4 digits of the credit card number.
+
+maskedNumber
+A value comprising the bank identification number (BIN), 6 asterisks blocking out the middle numbers (regardless of the number of digits present), and the last 4 digits of the card number. This complies with PCI security standards.
+
+payroll
+enum
+Whether the card is a payroll card. Possible values:
+
+CreditCard.Payroll.Yes
+CreditCard.Payroll.No
+CreditCard.Payroll.Unknown
+prepaid
+enum
+Whether the card is a prepaid card. Possible values:
+
+CreditCard.Prepaid.Yes
+CreditCard.Prepaid.No
+CreditCard.Prepaid.Unknown
+productId
+String
+The code for the product type of the card (e.g. D (Visa Signature Preferred), G (Visa Business)). See Product ID codes below for possible values.
+
+token
+String
+The Vault token for the Visa Checkout card. Unlike other attributes in this details map, this attribute is not a snapshot – if you update the payment method token after creating a transaction, the visaCheckoutCardDetails.token attribute will return the new value rather than the value associated with the transaction at the time it was created. See the transaction API requests section for additional details.
+
+voiceReferralNumber
+The value passed by the merchant with a voice-authorized transaction.
+
+Result object
+Read more about result objects.
+
+Successful result
+If the result is successful, the transaction will have either a settling status, authorized status, or (if the options.submitForSettlement option was used) a submitted for settlement status.
+
+Node.js
+
+Copy
+Copied
+result.success;
+// true
+
+result.transaction.status;
+// "authorized"
+result.success;
+// true
+
+result.transaction.status;
+// "authorized"
+Additionally, you may inspect the result to determine if the transaction was created using a specific payment method type (e.g. PayPal account or a credit card), using the provided format.
+
+Node.js
+
+Copy
+Copied
+const transaction = result.transaction;
+transaction.paymentInstrumentType === braintree.PaymentInstrumentTypes.PayPalAccount;
+// false
+transaction.paymentInstrumentType === braintree.PaymentInstrumentTypes.CreditCard;
+// true
+const transaction = result.transaction;
+transaction.paymentInstrumentType === braintree.PaymentInstrumentTypes.PayPalAccount;
+// false
+transaction.paymentInstrumentType === braintree.PaymentInstrumentTypes.CreditCard;
+// true
+Unsuccessful result
+Success will return false if:
+
+Validations prevent the transaction from being created
+The processor declines the authorization or settlement
+The gateway rejects the transaction
+Node.js
+
+Copy
+Copied
+result.success;
+// false
+
+result.errors.deepErrors();
+result.success;
+// false
+
+result.errors.deepErrors();
+Validation errors
+If any parameters are invalid, then the success call will return false and the result object will contain one or more validation errors indicating which parameters were invalid.
+
+When receiving a validation error, a Transaction object will not be present on the result object.
+
+Processor declined
+If the processor declines the transaction during the authorization, the processor response will be available on the transaction object.
+
+Node.js
+
+Copy
+Copied
+result.success;
+// false
+
+result.transaction.status;
+// "processor_declined"
+
+result.transaction.processorResponseType;
+// e.g. "soft_declined"
+
+result.transaction.processorResponseCode;
+// e.g. "2001"
+
+result.transaction.processorResponseText;
+// e..g "Insufficient Funds"
+result.success;
+// false
+
+result.transaction.status;
+// "processor_declined"
+
+result.transaction.processorResponseType;
+// e.g. "soft_declined"
+
+result.transaction.processorResponseCode;
+// e.g. "2001"
+
+result.transaction.processorResponseText;
+// e..g "Insufficient Funds"
+As a supplement to the standardized processor response codes, we will return bank-specific Additional Processor Responses on the transaction object. The standardized code is what you should use when handling the result object, but the Additional Processor Response might provide further context.
+
+Node.js
+
+Copy
+Copied
+result.transaction.additionalProcessorResponse;
+# e.g. "05 : NOT AUTHORISED"
+result.transaction.additionalProcessorResponse;
+# e.g. "05 : NOT AUTHORISED"
+Processor settlement declined
+If the processor declines the transaction at the settlement stage, the processor response will be available on the transaction object.
+
+Node.js
+
+Copy
+Copied
+result.success;
+// false
+
+result.transaction.status;
+// "settlement_declined"
+
+result.transaction.processorSettlementResponseCode;
+// e.g. "4001"
+
+result.transaction.processorSettlementResponseText;
+// e..g "Settlement Declined"
+result.success;
+// false
+
+result.transaction.status;
+// "settlement_declined"
+
+result.transaction.processorSettlementResponseCode;
+// e.g. "4001"
+
+result.transaction.processorSettlementResponseText;
+// e..g "Settlement Declined"
+Gateway rejection
+If the transaction is rejected by the gateway based on your account settings, you can check for the transaction status and gateway rejection reason.
+
+Node.js
+
+Copy
+Copied
+result.success;
+// false
+
+result.transaction.status;
+// "gateway_rejected"
+
+result.transaction.gatewayRejectionReason;
+// e.g. "cvv"
+result.success;
+// false
+
+result.transaction.status;
+// "gateway_rejected"
+
+result.transaction.gatewayRejectionReason;
+// e.g. "cvv"
+Risk data
+We will also return any applicable risk data on transactions. The data includes the risk identifier, the device data captured flag, and the risk decision, which can provide further context on how a transaction was scored by Braintree.
+
+Node.js
+
+Copy
+Copied
+result.transaction.riskData.id;
+// "1SG23YHM4BT5"
+result.transaction.riskData.decision;
+// "Decline"
+result.transaction.riskData.deviceDataCaptured;
+// true
+result.transaction.riskData.id;
+// "1SG23YHM4BT5"
+result.transaction.riskData.decision;
+// "Decline"
+result.transaction.riskData.deviceDataCaptured;
+// true
+The possible values of the risk decision are:
+
+"Not Evaluated"
+"Approve"
+"Review"
+"Decline"
+Params retrieval
+See our documentation on result objects.
+
+Examples
+Currencies
+Each merchant account can only process transactions for a single currency. Setting which merchant account to use will also determine which currency the transaction is processed with.
+
+Node.js
+
+Copy
+Copied
+result.transaction.currencyIsoCode;
+// USD
+result.transaction.currencyIsoCode;
+// USD
+Settlement status
+Check the result for success, and if it has failed, then first check for validation errors. If there are no validation errors, inspect the processorSettlementResponseCode on the transaction, which will indicate if the processor declined the request.
+
+Callbacks
+Promises
+
+Copy
+Copied
+gateway.transaction.submitForSettlement("theTransactionId", (err, result) => {
+  if (result.success) {
+    // submitted successfully
+  } else if result.errors.deepErrors() > 0 {
+    console.log(result.errors);
+  } else {
+    console.log(result.transaction.processorSettlementResponseCode);
+    console.log(result.transaction.processorSettlementResponseText);
+  }
+});
+gateway.transaction.submitForSettlement("theTransactionId", (err, result) => {
+  if (result.success) {
+    // submitted successfully
+  } else if result.errors.deepErrors() > 0 {
+    console.log(result.errors);
+  } else {
+    console.log(result.transaction.processorSettlementResponseCode);
+    console.log(result.transaction.processorSettlementResponseText);
+  }
+});
+Processor settlement declined
+If the settlement request is declined by the processor, the processor response will be available on the transaction object.
+
+Node.js
+
+Copy
+Copied
+result.success;
+// false
+
+result.transaction.status;
+// "settlement_declined"
+
+result.transaction.processorSettlementResponseCode;
+// e.g. "4001"
+
+result.transaction.processorSettlementResponseText;
+// e..g "Settlement Declined"
+result.success;
+// false
+
+result.transaction.status;
+// "settlement_declined"
+
+result.transaction.processorSettlementResponseCode;
+// e.g. "4001"
+
+result.transaction.processorSettlementResponseText;
+// e..g "Settlement Declined"
+Voiding settlement
+If you submit a transaction for settlement and then decide you actually don't want to settle it, you can void it before it's settled. After it's settled, you'll need to refund it instead.
+
+To check if the transaction has been settled, find the transaction and check the status.
+
+Callbacks
+Promises
+
+Copy
+Copied
+gateway.transaction.find("theTransactionId", (err, transaction) => {
+  if (transaction.status === "submitted_for_settlement") {
+    // can void
+  } else if (transaction.status === braintree.Transaction.Status.Settled) {
+    // have to refund
+  }
+});
+gateway.transaction.find("theTransactionId", (err, transaction) => {
+  if (transaction.status === "submitted_for_settlement") {
+    // can void
+  } else if (transaction.status === braintree.Transaction.Status.Settled) {
+    // have to refund
+  }
+});
+Authorization adjustments
+When submitting a transaction for settlement, if you specify a settlement amount that is different than the authorized amount, an authorization adjustment may be performed automatically.
+
+For each adjustment performed, an authorization adjustment object will be associated with the original transaction. These adjustment objects will include the following details:
+
+Adjustment Detail	Description
+amount	The difference between the authorized amount and the amount submitted for settlement. Negative values indicate the authorized amount was adjusted down.
+success	A boolean value indicating if the adjustment was successful.
+timestamp	The date/time when the adjustment was performed.
+proccessorResponseType	The processor response type. Possible values: "approved", "soft_declined", "hard_declined". See the list of possible processor authorization responses.
+proccessorResponseCode	The processor response code. See the list of possible processor authorization responses.
+proccessorResponseText	The processor response text. See the list of possible processor authorization responses.
+Status history details
+Each status detail object contains the following attributes:
+
+Status Detail	Description
+amount	The amount of the request.
+status	A record of the statuses that a transaction has progressed through. Possible values:
+AuthorizationExpired
+Authorized
+Authorizing
+SettlementPending
+SettlementConfirmed
+SettlementDeclined
+Failed
+GatewayRejected
+ProcessorDeclined
+Settled
+Settling
+SubmittedForSettlement
+Voided
+timestamp	The date/time the status change was performed. Results are returned in UTC.
+transactionSource	How a transaction was created. Possible values:
+Api
+ControlPanel
+Recurring
+user	The Braintree Control Panel username of the person who performed an action that triggered the status change of the transaction.
+You can use these status events to retrieve information around transaction status changes.
+
+Callbacks
+Promises
+
+Copy
+Copied
+gateway.transaction.find("theTransactionId", (err, transaction) => {
+  transaction.statusHistory.forEach((event) => {
+      console.log(event.amount);
+      console.log(event.status);
+      console.log(event.timestamp);
+      console.log(event.transactionSource);
+      console.log(event.user);
+  });
+});
+gateway.transaction.find("theTransactionId", (err, transaction) => {
+  transaction.statusHistory.forEach((event) => {
+      console.log(event.amount);
+      console.log(event.status);
+      console.log(event.timestamp);
+      console.log(event.transactionSource);
+      console.log(event.user);
+  });
+});
+Product ID codes
+The Braintree gateway returns the following product IDs for credit and debit card payment methods. The product ID is generally 1-3 characters and indicates the specific credit product that was issued to the customer.
+
+Product ID code	Product name
+001	Discover Consumer Credit – Rewards
+002	Discover Commercial Credit
+003	Discover Consumer Debit
+004	Discover Commercial Debit
+005	Discover Prepaid Gift
+006	Discover Prepaid ID known
+007	Discover Consumer Credit – Premium
+008	Discover Consumer Credit - Core
+009	Discover Private Label Credit
+010	Discover Commercial Credit – Executive Business
+011	Discover Consumer Credit – Premium Plus
+012	Discover Commercial Prepaid – Non-Reloadable
+013	Discover PayPal
+014	Discover PayPal Mobile
+A	Visa Traditional
+B	Visa Traditional Rewards
+BPD	MasterCard Business Premium Debit
+C	Visa Signature
+CIR	MasterCard Cirrus
+D	Visa Signature Preferred
+DAG	Global Debit MasterCard Salary
+DAP	Platinum Debit MasterCard Salary
+DAS	Standard Debit MasterCard Salary
+DLG	Debit MasterCard Gold Delayed Debit
+DLH	Debit MasterCard World Embossed Delayed Debit
+DLP	Debit MasterCard Platinum Delayed Debit
+DLS	Debit MasterCard Card Delayed Debit
+DOS	Standard Debit MasterCard Social
+DWF	Debit MasterCard Humanitarian Prepaid
+E	Visa Proprietary ATM
+F	Visa Classic
+G	Visa Business
+G1	Visa Signature Business
+G3	Visa Business Enhanced (US only)
+G4	Visa Infinite Business
+G5	Visa Business Rewards
+I	Visa Infinite
+I	Visa Infinite Privilege
+I2	Visa UHNW
+IB	American Express Non-US
+IR	American Express Non-US Reloadable
+IS	American Express Non-US Stored Value
+J3	Visa Healthcare
+K	Visa Corporate T&E
+K1	Visa GSA Corporate T&E
+L	Visa Electron
+MAB	World Elite MasterCard for Business Card
+MAC	MasterCard World Elite Corporate Card
+MAP	MasterCard Commercial Payments Account
+MAQ	MasterCard Prepaid Commercial Payments Account
+MBB	MasterCard Prepaid Consumer
+MBC	MasterCard Prepaid Voucher
+MBD	MasterCard Professional Debit BusinessCard Card
+MBE	MasterCard Electronic Business Card
+MBF	Prepaid MC Food
+MBK	MasterCard Black Card
+MBM	Prepaid MC Meal
+MBP	MasterCard Corporate Prepaid
+MBS	MasterCard B2B Product
+MBT	MasterCard Corporate Prepaid Travel
+MBW	World MasterCard Black Edition Debit
+MCB	MasterCard BusinessCard Card
+MCC	MasterCard Credit Card (mixed BIN)
+MCD	Debit MasterCard Card
+MCE	MasterCard Electronic Card
+MCF	MasterCard Fleet Card
+MCG	Gold MasterCard Card
+MCH	MasterCard Premium Charge
+MCO	MasterCard Corporate (Meeting) Card
+MCP	MasterCard Purchasing Card
+MCS	(Unembossed) Standard MasterCard Card
+MCT	Titanium MasterCard Card
+MCV	Merchant-Branded Program
+MCW	World MasterCard Card
+MDB	Debit MasterCard BusinessCard Card
+MDG	Gold Debit MasterCard Card
+MDH	World Debit Embossed MasterCard Card
+MDJ	Debit MasterCard (Enhanced)
+MDL	MasterCard Business Debit Other Embossed
+MDO	MasterCard Debit Other
+MDP	Premium Debit MasterCard Card
+MDR	MasterCard Debit Brokerage
+MDS	Debit MasterCard Card
+MDT	Commercial Debit MasterCard Card
+MDW	World Elite Debit MasterCard
+MEB	MasterCard Executive BusinessCard Card
+MEC	MasterCard Electronic Commercial
+MEF	MasterCard Electronic Payment Account
+MEO	MasterCard Corporate Executive Card
+MET	Titanium Debit MasterCard Card
+MFB	MasterCard Flex World Elite
+MFD	MasterCard Flex Platinum
+MFE	MasterCard Flex Charge World Elite
+MFH	MasterCard Flex World
+MFL	MasterCard Flex Charge Platinum
+MFW	MasterCard Flex World Charge
+MGF	MasterCard Government Commercial Card
+MHA	MasterCard Healthcare Prepaid Non-Tax
+MHB	MasterCard HSA Substantiated (Debit MasterCard)
+MHD	MasterCard HELOC Debit Standard
+MHH	MasterCard HSA Non-Substantiated (Debit MasterCard)
+MHK	MasterCard Magna Health Access Card
+MHD	MasterCard HELOC Debit Gold
+MHD	MasterCard HELOC Debit Platninum
+MHD	MasterCard HELOC Debit Premium
+MIA	Prepaid MasterCard Unembossed Student Card
+MIK	Prepaid MasterCard Electronic Student (Non-US) Card
+MIL	Unembossed MasterCard Student Card (Non-US)
+MIP	Prepaid Debit MasterCard Student Card
+MIU	Debit MasterCard Unembossed (Non-US)
+MLA	MasterCard Central Travel Solutions Air Card
+MLB	MasterCard Brazil Benefit for Home Improvement
+MLD	MasterCard Distribution Card
+MLE	MasterCard Brazil General Benefits
+MLF	MasterCard Agro Card
+MLL	MasterCard Central Travel Solutions Land Card
+MNF	MasterCard Public Sector Commercial Card
+MNW	MasterCard World Card
+MOC	Standard Maestro Social
+MOG	Maestro Gold Card
+MOP	Maestro Platinum
+MOW	World Maestro
+MPA	MasterCard Prepaid Debit Standard Payroll
+MPB	MasterCard Preferred Business Card
+MPD	MasterCard Flex Prepaid
+MPF	MasterCard Prepaid Debit Standard Gift
+MPG	Debit MasterCard Standard Prepaid General Spend
+MPH	MasterCard Cash
+MPJ	Prepaid Debit MasterCard Card Gold
+MPK	MasterCard Prepaid Government Commercial Card
+MPL	Platinum MasterCard Card
+MPM	MasterCard Prepaid Debit Standard Consumer Incentive
+MPN	MasterCard Prepaid Debit Standard Insurance
+MPO	MasterCard Prepaid Debit Standard Offer
+MPP	MasterCard Prepaid Card – Commercial Reward Funding
+MPQ	MasterCard Prepaid Debit Standard Government Disaster
+MPR	MasterCard Prepaid Debit Standard Travel
+MPT	MasterCard Prepaid Debit Standard Teen
+MPV	MasterCard Prepaid Debit Standard Government
+MPW	Debit MasterCard Business Card Prepaid Workplace Business
+MPX	MasterCard Prepaid Debit Standard Flex Benefit
+MPY	MasterCard Prepaid Debit Standard Employee Incentive
+MPZ	MasterCard Prepaid Debit Standard Government Consumer
+MRB	MasterCard Prepaid Electronic Business Card (Non-US)
+MRC	Prepaid MasterCard Electronic Card (Non-US)
+MRF	MasterCard European Regulated Individual Pay
+MRG	MasterCard Prepaid Card (Non-US)
+MRH	MasterCard Platinum Prepaid Travel (US)
+MRJ	Prepaid MasterCard Gold Card
+MRK	Prepaid MasterCard Public Sector Commercial Card
+MRL	Prepaid MasterCard Electronic Commercial Card (Non-US)
+MRO	MasterCard Rewards Only
+MRP	Standard Retailer Centric Payments
+MRS	Prepaid MasterCard ISIC Student Card
+MRW	Prepaid MasterCard Business Card (Non-US)
+MSA	Prepaid Maestro Payroll Card
+MSB	Maestro Small Business Card
+MSF	Prepaid Maestro Gift Card
+MSG	Prepaid Maestro Consumer Reloadable Card
+MSI	Maestro Student Card
+MSJ	Prepaid Maestro Gold
+MSM	Prepaid Maestro Consumer Promotion Card
+MSN	Prepaid Maestro Insurance Card
+MSO	Prepaid Maestro Other Card
+MSQ	Unknown MasterCard
+MSR	Prepaid Maestro Travel Card
+MST	Prepaid Maestro Teen Card
+MSV	Prepaid Maestro Government Benefit Card
+MSW	Prepaid Maestro Corporate (Reloadable) Card
+MSX	Prepaid Maestro Flex Benefit Card
+MSY	Prepaid Maestro Employee Incentive Card
+MSZ	Prepaid Maestro Emergency Assistance Card
+MTP	MasterCard Platinum Prepaid Travel (UK and Brazil)
+MUS	Prepaid Unembossed MasterCard Card
+MUW	MasterCard World Domestic Affluent
+MWB	World Elite MasterCard Business Card
+MWD	World Deferred MasterCard
+MWE	World Elite MasterCard Card
+MWF	MasterCard Humanitarian Prepaid
+MWO	World Elite MasterCard Corporate Card
+MWR	MasterCard World Retailer Centric Payments
+N	Visa Platform
+N1	Visa Rewards
+N2	Visa Select
+OLB	Maestro Small Business Delayed Debit
+OLG	Maestro Gold Delayed Debit
+OLP	Maestro Platinum Delayed Debit
+OLS	Maestro (Student Card) Delayed Debit
+OLW	World Maestro Delayed Debit
+P	Visa Gold
+PMC	MasterCard Proprietary Credit Card (Swedish domestic)
+PMD	MasterCard Proprietary Debit Card (Swedish domestic)
+PSC	MasterCard Common Proprietary Swedish Credit Card
+PSD	MasterCard Common Proprietary Swedish Debit Card
+PVA	MasterCard Private Label A
+PVB	MasterCard Private Label B
+PVC	MasterCard Private Label C
+PVD	MasterCard Private Label D
+PVE	MasterCard Private Label E
+PVF	MasterCard Private Label F
+PVG	MasterCard Private Label G
+PVH	MasterCard Private Label H
+PVI	MasterCard Private Label I
+PVJ	MasterCard Private Label J
+PVL	MasterCard Private Label L
+Q	Visa Private Label
+Q2	Visa Private Label Basic
+Q3	Visa Private Label Standard
+Q4	Visa Private Label Enhanced
+Q5	Visa Private Label Specialized
+Q6	Visa Private Label Premium
+R	Visa Proprietary
+RP	American Express US Reloadable
+S	Visa Purchasing
+S1	Visa Purchasing with Fleet
+S2	Visa GSA Purchasing
+S3	Visa GSA Purchasing with Fleet
+S4	Visa Government Services Loan
+S5	Visa Commercial Transport (EBT)
+S6	Visa Business Loan
+S7	Visa Distribution
+SAG	Gold MasterCard Salary Immediate Debit
+SAL	Standard Maestro Salary
+SAP	Platinum MasterCard Salary Immediate Debit
+SAS	Standard MasterCard Salary Immediate Debit
+SOS	Standard MasterCard Social Immediate Debit
+SUR	Prepaid Unembossed MasterCard Card (Non-US)
+SV	American Express US Stored Value
+TBE	MasterCard Electronic Business Immediate Debit
+TCB	MasterCard Corporate Immediate Debit
+TCC	MasterCard (mixed BIN) Immediate Debit
+TCE	MasterCard (Electronic) Student Card Immediate Debit
+TCF	MasterCard Fleet Card Immediate Debit
+TCG	Gold MasterCard Card Immediate Debit
+TCO	MasterCard (Corporate) Immediate Debit
+TCP	MasterCard Purchasing Card Immediate Debit
+TCS	MasterCard Standard (Unembossed) Card Immediate Debit
+TCW	MasterCard World Signia Immediate Debit
+TEB	MasterCard Executive BusinessCard Card Immediate Debit
+TEC	MasterCard Electronic Commercial Immediate Debit
+TEO	MasterCard Corporate Executive Card Immediate Debit
+TNF	MasterCard Public Sector Commercial Card Immediate Debit
+TNW	MasterCard New World Immediate Debit
+TPB	MasterCard Preferred Business Card Immediate Debit
+TPL	Platinum MasterCard Immediate Debit
+TWB	World MasterCard Black Edition Immediate Debit
+U	Visa Travel Money
+V	Visa V Pay
+WBE	World MasterCard Black Edition
+X	Visa B2B Virtual Payments
+Network response codes
+In addition to the processor response code and text, some transaction and verification objects also include a network response code and text.
+
+These network response values are the raw responses that may be returned by the card network, and when present they can provide additional detail about why a request was approved or declined. However, this information is supplemental to the processor response code; you should consider the processor response code to be the source of truth.
+
+Each card network has distinct response codes:
+
+Visa
+Mastercard
+Discover
+American Express
+Card Network	Code	Text
+Visa	00	Successful approval/completion or V.I.P. PIN verification is successful
+Visa	01	Refer to card issuer
+Visa	02	Refer to card issuer, special condition
+Visa	03	Invalid merchant or service provider
+Visa	04	Pick up card
+Visa	05	Do not Honor
+Visa	06	Error
+Visa	07	Pick up card, special condition (other than lost/stolen card)
+Visa	10	Partial Approval
+Visa	11	V.I.P. approval
+Visa	12	Invalid transaction
+Visa	13	Invalid amount (currency conversion field overflow); or amount exceeds maximum for card program
+Visa	14	Invalid account number (no such number)
+Visa	15	No such issuer
+Visa	19	Re-enter transaction
+Visa	21	No action taken (unable to back out prior transaction)
+Visa	25	Unable to locate record in file, or account number is missing from the inquiry
+Visa	28	File is temporarily unavailable
+Visa	39	No credit account
+Visa	41	Pick up card (lost card)
+Visa	43	Pick up card (stolen card)
+Visa	51	Insufficient funds
+Visa	52	No checking account
+Visa	53	No savings account
+Visa	54	Expired card
+Visa	55	Incorrect PIN
+Visa	57	Transaction not permitted to cardholder
+Visa	58	Transaction not allowed at terminal
+Visa	59	Suspected fraud
+Visa	61	Activity amount limit exceeded
+Visa	62	Restricted card (for instance, in Country Exclusion table)
+Visa	63	Security violation
+Visa	64	Transaction does not fulfill AML requirement
+Visa	65	Activity count limit exceeded
+Visa	75	Allowable number of PIN-entry tries exceeded
+Visa	76	Unable to locate previous message (no match on retrieval reference number)
+Visa	77	Previous message located for a repeat or reversal, but repeat or reversal data inconsistent with original message
+Visa	78	Blocked, first used — Transaction from new cardholder, and card not properly unblocked
+Visa	79	Transaction reversed
+Visa	80	Visa transactions: credit issuer unavailable. Private label: invalid date
+Visa	81	PIN cryptographic error found (error found by VIC security module during PIN decryption)
+Visa	82	Negative Online CAM, dCVV, iCVV, or CVV results Or Offline PIN authentication interrupted
+Visa	85	No reason to decline request for account number verification, address verification, CVV2 verification, or credit voucher or merchandise return
+Visa	86	Cannot verify PIN
+Visa	91	Issuer unavailable or switch inoperative (STIP not applicable or available for this transaction) Issuers can respond with this code, which V.I.P. passes to the acquirer without invoking stand-in processing (STIP). Issuer processors use the code to indicate they cannot perform authorization on issuers’ behalf. Code causes decline at POS.
+Visa	1A	Additional customer authentication required
+Visa	B1	B116 Surcharge amount not permitted on Visa cards
+Visa	N0	Force STIP
+Visa	N3	Cash service not available
+Visa	N4	Cashback request exceeds issuer limit
+Visa	N7	Decline for CVV2 failure
+Visa	N8	Transaction amount exceeds pre-authorized approval amount
+Visa	P2	P2 Invalid biller information
+Visa	P5	PIN change/unblock request declined
+Visa	P6	Unsafe PIN
+Visa	R0	Stop payment order
+Visa	R1	Revocation of authorization order
+Visa	R3	Revocation of all authorizations order
+Visa	Z3	Unable to go online; declined
+Visa	XA	Forward to issuer
+Visa	XD	Forward to issuer
+Visa	Q1	Card authentication failed Or Offline PIN authentication interrupted
+Mastercard	00	Approved or completed successfully
+Mastercard	01	Refer to card issuer
+Mastercard	03	Invalid merchant
+Mastercard	04	Capture card Capture
+Mastercard	05	Do not honor
+Mastercard	08	Honor with ID
+Mastercard	10	Partial Approval
+Mastercard	12	Invalid transaction
+Mastercard	13	Invalid amount
+Mastercard	14	Invalid card number
+Mastercard	15	Invalid issuer
+Mastercard	30	Format error
+Mastercard	41	Lost card
+Mastercard	43	Stolen Card
+Mastercard	51	Insufficient funds/over credit limit
+Mastercard	54	Expired card
+Mastercard	55	Invalid PIN
+Mastercard	57	Transaction not permitted to issuer/cardholder
+Mastercard	58	Transaction not permitted to acquirer/terminal
+Mastercard	61	Exceeds withdrawal amount limit
+Mastercard	62	Restricted card
+Mastercard	63	Security violation
+Mastercard	65	Exceeds withdrawal count limit
+Mastercard	70	Contact Card Issuer
+Mastercard	71	PIN Not Changed
+Mastercard	75	Allowable number of PIN tries exceeded
+Mastercard	76	Invalid/nonexistent To Account specified
+Mastercard	77	Invalid/nonexistent From Account specified
+Mastercard	78	Invalid/nonexistent account specified (general)
+Mastercard	81	Domestic Debit Transaction Not Allowed (Regional use only)
+Mastercard	84	Invalid Authorization Life Cycle
+Mastercard	85	Not declined. Valid for all zero amount transactions.
+Mastercard	86	PIN Validation not possible
+Mastercard	87	Purchase Amount Only, No Cash Back Allowed
+Mastercard	88	Cryptographic failure
+Mastercard	89	Unacceptable PIN—Transaction Declined—Retry
+Mastercard	91	Authorization System or issuer system inoperative
+Mastercard	92	Unable to route transaction
+Mastercard	94	Duplicate transmission detected
+Mastercard	96	System error
+Discover	00	Approved or completed successfully
+Discover	01	Reserved for future use
+Discover	02	Reserved for future use
+Discover	03	Invalid Merchant
+Discover	04	Capture Card
+Discover	05	Do not honor
+Discover	07	Pick-up Card, special condition
+Discover	08	Reserved for future use
+Discover	10	Approved for partial amount
+Discover	11	Approved
+Discover	12	Invalid transaction
+Discover	13	Invalid amount
+Discover	14	Invalid Card Number
+Discover	15	Reserved for future use
+Discover	19	Re-enter transaction
+Discover	30	Format error
+Discover	31	Bank not supported by switch
+Discover	33	Reserved for future use
+Discover	34	Reserved for future use
+Discover	35	Reserved for future use
+Discover	36	Reserved for future use
+Discover	37	Reserved for future use
+Discover	38	Allowable PIN tries exceeded
+Discover	39	No credit Account
+Discover	40	Requested function not supported
+Discover	41	Lost Card
+Discover	43	Stolen Card
+Discover	51	Decline
+Discover	53	No savings Account
+Discover	54	Expired Card
+Discover	55	Invalid PIN
+Discover	56	No Card record
+Discover	57	Transaction not permitted to Issuer/Cardholder
+Discover	58	Transaction not permitted to Acquirer/terminal
+Discover	59	Suspected fraud
+Discover	60	Card acceptor contact Acquirer
+Discover	61	Exceeds withdrawal amount limit
+Discover	62	Restricted Card
+Discover	63	Security violation
+Discover	64	Original amount incorrect
+Discover	65	Exceeds withdrawal count limit
+Discover	66	Card Acceptor call Acquirer’s security dept
+Discover	67	Hard capture (requires ATM pick-up)
+Discover	68	Response received too late Decline
+Discover	75	Allowable number of PIN tries exceeded
+Discover	76	Invalid/nonexistent “to” Account specified
+Discover	77	Invalid/nonexistent “from” Account specified
+Discover	78	Invalid/nonexistent Account specified (general)
+Discover	83	Domain Restriction Controls Failure
+Discover	85	No reason to decline
+Discover	87	Network unavailable
+Discover	91	Authorization system or Issuer system inoperative
+Discover	92	Unable to route transaction Decline
+Discover	93	Transaction cannot be completed, violation of law
+Discover	94	Duplicate transmission detected
+Discover	96	System malfunction Decline
+Discover	N1	System up
+Discover	N2	Soft down
+Discover	N3	System down
+Discover	N7	Decline for AVS or CID mismatch
+Discover	P5	PIN Change/Unblock failed
+Discover	P6	New PIN not accepted
+American Express	000	Approved
+American Express	001	Approved with ID
+American Express	002	Partial Approval (Prepaid Cards only)
+American Express	100	Deny
+American Express	101	Expired Card / Invalid Expiration Date
+American Express	106	Exceeded PIN attempts
+American Express	107	Please Call Issuer
+American Express	109	Invalid merchant
+American Express	110	Invalid amount
+American Express	111	Invalid account / Invalid MICR (Travelers Cheque)
+American Express	115	Requested function not supported
+American Express	117	Invalid PIN
+American Express	119	Cardmember not enrolled / not permitted
+American Express	122	Invalid card security code (a.k.a., CID, 4DBC, 4CSC)
+American Express	125	Invalid effective date
+American Express	181	Format error
+American Express	183	Invalid currency code
+American Express	187	Deny - New card issued
+American Express	189	Deny - Canceled or Closed Merchant/SE
+American Express	200	Deny - Pick up card
+American Express	900	Accepted - ATC Synchronization
+American Express	909	System Malfunction (Cryptographic error)
+American Express	912	Issuer not available
+See also
+Create a transaction
+Transaction statuses
+Result objects
+Get help from a human
+Submit a request for help with your Braintree sandbox or production account.
+
+Get Help
+Get Started
+Integration Guide
+Tutorial (Preview)
+Checkout UIs
+Example Integrations
+Basics
+Client Authorization
+Payment Method Nonces
+Transactions
+Customers
+Payment Methods
+Payment Method Types
+Overview
+ACH Direct Debit
+Apple Pay
+Credit Cards
+Google Pay
+PayPal
+Samsung Pay
+UnionPay (Beta)
+Venmo
+Secure Remote Commerce
+Tools
+3D Secure
+Advanced Fraud Tools
+Client SDK
+Disputes
+Payment Request API
+Reports
+Webhooks
+Checkout UI
+Drop-in UI
+Hosted Fields
+Additional Features
+Braintree Auth (Beta)
+Braintree Marketplace
+Grant API (Beta)
+OAuth (Beta)
+PayPal Here
+Recurring Billing
+API Reference
+Client References
+Server-side API Requests
+Server-side Response Objects
